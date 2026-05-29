@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Core Step Solution LLC delivers bilingual Fiix CMMS implementation, digital maintenance, and asset management solutions."
+    />
+    <title>Core Step Solution LLC | Digital Maintenance & Asset Management</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              navy: '#0B1B3D',
+              fiix: '#00B5E2',
+            },
+            fontFamily: {
+              body: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+              heading: ['Plus Jakarta Sans', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            },
+            boxShadow: {
+              soft: '0 18px 50px rgba(11, 27, 61, 0.08)',
+              glow: '0 18px 46px rgba(0, 181, 226, 0.16)',
+            },
+          },
+        },
+      };
+    </script>
+    <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <style>
+      :root {
+        --navy: #0b1b3d;
+        --fiix: #00b5e2;
+      }
+
+      body {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      }
+
+      h1,
+      h2,
+      h3,
+      .font-heading,
+      .nav-link,
+      .metric-number {
+        font-family: 'Plus Jakarta Sans', Inter, ui-sans-serif, system-ui, sans-serif;
+      }
+
+      .language-scope {
+        transition: opacity 180ms ease, transform 180ms ease;
+      }
+
+      .language-scope.is-changing {
+        opacity: 0.25;
+        transform: translateY(0.25rem);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(1rem);
+        transition: opacity 650ms ease, transform 650ms ease;
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .brand-navy-surface {
+        background:
+          radial-gradient(circle at 14% 18%, rgba(0, 181, 226, 0.15), transparent 30%),
+          radial-gradient(circle at 86% 10%, rgba(0, 181, 226, 0.10), transparent 28%),
+          linear-gradient(135deg, #0b1b3d 0%, #061127 100%);
+      }
+
+      .brand-grid {
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+        background-size: 48px 48px;
+        mask-image: radial-gradient(circle at 50% 40%, black, transparent 74%);
+      }
+
+      .brand-glow {
+        background: rgba(0, 181, 226, 0.15);
+        filter: blur(72px);
+      }
+
+      .premium-card {
+        border: 1px solid rgba(226, 232, 240, 0.95);
+        background: rgba(255, 255, 255, 0.94);
+        transition: border-color 240ms ease, box-shadow 240ms ease, transform 240ms ease;
+      }
+
+      .premium-card:hover,
+      .premium-card:focus-within {
+        border-color: rgba(0, 181, 226, 0.75);
+        box-shadow: 0 18px 46px rgba(0, 181, 226, 0.14), 0 18px 50px rgba(11, 27, 61, 0.08);
+        transform: translateY(-0.25rem);
+      }
+
+      .nav-link.active {
+        color: var(--fiix);
+      }
+
+      .maturity-card[aria-pressed='true'] {
+        border-color: rgba(0, 181, 226, 0.85);
+        box-shadow: 0 18px 46px rgba(0, 181, 226, 0.16);
+        transform: translateY(-0.25rem);
+      }
+
+      .maturity-card[aria-pressed='true'] .maturity-number {
+        background: var(--fiix);
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body class="bg-white font-body text-slate-700 antialiased">
+    <header class="sticky top-0 z-50 border-b border-slate-200/70 bg-white/80 backdrop-blur-md">
+      <nav class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 lg:px-8" aria-label="Primary navigation">
+        <a href="#top" class="flex items-center gap-3" aria-label="Core Step Solution home">
+          <span class="flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-soft">
+            <img src="assets/core-step-logo-navy.png" alt="Core Step Solution LLC" class="h-8 w-8 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" />
+            <span class="hidden font-heading text-xs font-extrabold text-navy">CS</span>
+          </span>
+          <span class="hidden font-heading text-sm font-extrabold uppercase tracking-[0.22em] text-navy sm:inline">Core Step</span>
+        </a>
+
+        <div class="hidden items-center gap-6 xl:flex">
+          <a class="nav-link text-sm font-bold text-slate-600 transition hover:text-fiix" href="#about" data-en="About" data-mn="Бидний тухай">About</a>
+          <a class="nav-link text-sm font-bold text-slate-600 transition hover:text-fiix" href="#maturity" data-en="Maturity" data-mn="Хөгжлийн шат">Maturity</a>
+          <a class="nav-link text-sm font-bold text-slate-600 transition hover:text-fiix" href="#outcomes" data-en="Outcomes" data-mn="Үр дүн">Outcomes</a>
+          <a class="nav-link text-sm font-bold text-slate-600 transition hover:text-fiix" href="#services" data-en="Services" data-mn="Үйлчилгээ">Services</a>
+          <a class="nav-link text-sm font-bold text-slate-600 transition hover:text-fiix" href="#timeline" data-en="Timeline" data-mn="Нэвтрүүлэлт">Timeline</a>
+          <a class="nav-link text-sm font-bold text-slate-600 transition hover:text-fiix" href="#team" data-en="Team" data-mn="Баг">Team</a>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button
+            id="language-toggle"
+            type="button"
+            class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 font-heading text-sm font-bold text-navy shadow-sm transition hover:-translate-y-0.5 hover:border-fiix hover:text-fiix hover:shadow-glow focus:outline-none focus:ring-2 focus:ring-fiix focus:ring-offset-2"
+            aria-label="Switch language"
+          >
+            <i data-lucide="globe-2" class="h-4 w-4" aria-hidden="true"></i>
+            <span id="language-label">MN</span>
+          </button>
+          <a
+            class="js-open-modal nav-link rounded-full border border-navy bg-navy px-5 py-2.5 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-fiix hover:bg-blue-900 hover:shadow-glow focus:outline-none focus:ring-2 focus:ring-fiix focus:ring-offset-2"
+            href="#demo-modal"
+            data-en="Contact Us"
+            data-mn="Холбоо барих"
+          >Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <div id="language-scope" class="language-scope">
+      <main id="top">
+        <section class="brand-navy-surface relative overflow-hidden">
+          <div class="brand-grid absolute inset-0 opacity-90" aria-hidden="true"></div>
+          <div class="brand-glow absolute -left-24 top-20 h-72 w-72 rounded-full" aria-hidden="true"></div>
+          <div class="brand-glow absolute -right-24 bottom-10 h-72 w-72 rounded-full" aria-hidden="true"></div>
+          <div class="relative mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8 lg:py-28">
+            <div class="mx-auto max-w-4xl text-center reveal">
+              <div class="mx-auto mb-8 flex h-20 w-20 items-center justify-center overflow-hidden rounded-3xl border border-white/15 bg-white/10 shadow-glow backdrop-blur">
+                <img src="assets/core-step-logo-white.png" alt="Core Step Solution LLC" class="h-14 w-14 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" />
+                <span class="hidden font-heading text-lg font-extrabold text-white">CS</span>
+              </div>
+              <div class="mb-8 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-medium text-slate-200 shadow-sm backdrop-blur">
+                <span class="flex h-7 w-7 items-center justify-center overflow-hidden rounded-lg bg-fiix text-white">
+                  <img src="assets/fiix-logo-white.png" alt="Fiix CMMS" class="h-full w-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                  <i data-lucide="badge-check" class="hidden h-3.5 w-3.5" aria-hidden="true"></i>
+                </span>
+                <span data-en="Fiix CMMS Certified Partner" data-mn="Fiix CMMS нэвтрүүлэгч түнш">Fiix CMMS Certified Partner</span>
+              </div>
+
+              <h1
+                class="font-heading text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl"
+                data-en="Core Step Solution LLC - Digital Maintenance & Asset Management"
+                data-mn="Core Step Solution LLC - Дижитал засвар үйлчилгээ, хөрөнгийн удирдлага"
+              >Core Step Solution LLC - Digital Maintenance &amp; Asset Management</h1>
+
+              <p
+                class="mx-auto mt-7 max-w-3xl text-base leading-8 text-slate-300 sm:text-lg"
+                data-en="We deliver digital maintenance and asset management solutions for all manufacturing sectors from SMEs to large industries to improve asset reliability, reduce downtime, and enable data-driven decisions."
+                data-mn="Бүхий л төрлийн үйлдвэрлэлийн байгууллагуудын засвар үйлчилгээтэй холбоотой ажлыг төлөвлөх, удирдах, хянах дижитал шийдэл юм."
+              >We deliver digital maintenance and asset management solutions for all manufacturing sectors from SMEs to large industries to improve asset reliability, reduce downtime, and enable data-driven decisions.</p>
+
+              <div class="mt-11 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <a
+                  href="#demo-modal"
+                  class="js-open-modal rounded-full border border-white bg-white px-8 py-4 font-heading text-base font-bold text-navy shadow-soft transition hover:-translate-y-1 hover:border-fiix hover:bg-fiix hover:text-white hover:shadow-glow focus:outline-none focus:ring-2 focus:ring-fiix focus:ring-offset-2"
+                  data-en="Book a Demo"
+                  data-mn="Демо уулзалт товлох"
+                >Book a Demo</a>
+                <a
+                  href="#maturity"
+                  class="rounded-full border border-white/15 bg-white/10 px-8 py-4 font-heading text-base font-bold text-white shadow-sm backdrop-blur transition hover:-translate-y-1 hover:border-fiix hover:text-fiix"
+                  data-en="Explore maturity"
+                  data-mn="Хөгжлийн шатыг харах"
+                >Explore maturity</a>
+              </div>
+              <div class="mx-auto mt-10 flex max-w-sm items-center justify-center gap-4 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 backdrop-blur">
+                <span class="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Powered by</span>
+                <img src="assets/fiix-logo-color.png" alt="Fiix CMMS" class="h-8 w-auto rounded bg-white px-2 py-1" onerror="this.style.display='none';" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="about" class="brand-navy-surface relative scroll-mt-24 overflow-hidden py-24 sm:py-32" aria-labelledby="about-heading">
+          <div class="brand-grid absolute inset-0 opacity-80" aria-hidden="true"></div>
+          <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-3xl text-center reveal">
+              <p class="font-heading text-sm font-bold uppercase tracking-[0.22em] text-fiix" data-en="About" data-mn="Бидний тухай">About</p>
+              <h2
+                id="about-heading"
+                class="mt-4 font-heading text-3xl font-extrabold tracking-tight text-white sm:text-5xl"
+                data-en="From fragmented maintenance to one connected operating system."
+                data-mn="Тусдаа салангид засвар үйлчилгээг нэг нэгдсэн удирдлагын систем болгоно."
+              >From fragmented maintenance to one connected operating system.</h2>
+            </div>
+
+            <div class="mt-16 grid gap-8 lg:grid-cols-2">
+              <article class="reveal rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-soft backdrop-blur sm:p-10">
+                <div class="mb-7 flex h-12 w-12 items-center justify-center rounded-2xl bg-fiix/10 text-fiix">
+                  <i data-lucide="triangle-alert" class="h-6 w-6" aria-hidden="true"></i>
+                </div>
+                <h3 class="font-heading text-2xl font-bold text-white" data-en="The Traditional Challenges" data-mn="Нийтлэг асуудлууд">The Traditional Challenges</h3>
+                <p
+                  class="mt-5 text-lg leading-8 text-slate-300"
+                  data-en="Rising maintenance costs, unexpected downtime, lack of real-time visibility, paper-based workflows."
+                  data-mn="Засварын зардал өсөх, гэнэтийн сул зогсолт, тайлан хяналтын дутагдал, цаасан суурьтай үйл ажиллагаа."
+                >Rising maintenance costs, unexpected downtime, lack of real-time visibility, paper-based workflows.</p>
+              </article>
+
+              <article class="reveal rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-soft backdrop-blur sm:p-10">
+                <div class="mb-7 flex h-12 w-12 items-center justify-center rounded-2xl bg-fiix/10 text-fiix">
+                  <i data-lucide="cloud-cog" class="h-6 w-6" aria-hidden="true"></i>
+                </div>
+                <h3 class="font-heading text-2xl font-bold text-white" data-en="The Fiix CMMS Advantage" data-mn="Санал болгож буй шийдэл">The Fiix CMMS Advantage</h3>
+                <p
+                  class="mt-5 text-lg leading-8 text-slate-300"
+                  data-en="Centralized asset tracking, automated work orders, optimized inventory, and predictive real-time dashboard analytics."
+                  data-mn="Ажлын захиалгын удирдлага, хөрөнгийн нэгдсэн хяналт, агуулахын оновчтой төлөвлөлт, бодит датанд суурилсан дүн шинжилгээ."
+                >Centralized asset tracking, automated work orders, optimized inventory, and predictive real-time dashboard analytics.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="maturity" class="scroll-mt-24 bg-white py-24 sm:py-32" aria-labelledby="maturity-heading">
+          <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="grid gap-14 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+              <div class="reveal lg:sticky lg:top-28">
+                <p class="font-heading text-sm font-bold uppercase tracking-[0.22em] text-fiix" data-en="Maturity" data-mn="Хөгжлийн шат">Maturity</p>
+                <h2
+                  id="maturity-heading"
+                  class="mt-4 font-heading text-3xl font-extrabold tracking-tight text-navy sm:text-5xl"
+                  data-en="Where does your company stand?"
+                  data-mn="Танай компани аль үе шат дээрээ байгаа вэ?"
+                >Where does your company stand?</h2>
+                <p
+                  class="mt-6 text-lg leading-8 text-slate-600"
+                  data-en="Discover the 5 stages of industrial maintenance maturity"
+                  data-mn="Засвар үйлчилгээний хөгжлийн 5 үе шат"
+                >Discover the 5 stages of industrial maintenance maturity</p>
+
+                <div class="mt-10 rounded-[2rem] border border-fiix/20 bg-white p-7 shadow-soft">
+                  <div class="flex items-center gap-3 text-fiix">
+                    <i data-lucide="mouse-pointer-click" class="h-5 w-5" aria-hidden="true"></i>
+                    <span
+                      class="font-heading text-sm font-bold uppercase tracking-[0.18em]"
+                      data-en="Hover or click a stage"
+                      data-mn="Шат дээр дарж эсвэл хулганаа аваачна уу"
+                    >Hover or click a stage</span>
+                  </div>
+                  <p id="maturity-detail" class="mt-5 text-lg leading-8 text-slate-700"></p>
+                </div>
+              </div>
+
+              <div class="grid gap-5">
+                <button
+                  type="button"
+                  class="maturity-card premium-card reveal w-full rounded-[1.75rem] p-6 text-left shadow-soft lg:ml-0"
+                  aria-pressed="true"
+                  data-detail-en="Fix when it breaks. Hint: 90% of local enterprises operate here."
+                  data-detail-mn="Эвдрэл гарах үед засна. Hint: Монголын байгууллагуудын 90% нь энэ шатанд байдаг."
+                >
+                  <span class="flex items-start gap-5">
+                    <span class="maturity-number flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-fiix/30 bg-fiix font-heading text-sm font-extrabold text-white transition">1</span>
+                    <span>
+                      <span class="block font-heading text-xl font-bold text-navy" data-en="Reactive Maintenance" data-mn="Гэнэтийн засвар">Reactive Maintenance</span>
+                      <span class="mt-2 block leading-7 text-slate-600" data-en="Fix when it breaks. Hint: 90% of local enterprises operate here." data-mn="Эвдрэл гарах үед засна. Hint: Монголын байгууллагуудын 90% нь энэ шатанд байдаг.">Fix when it breaks. Hint: 90% of local enterprises operate here.</span>
+                    </span>
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  class="maturity-card premium-card reveal w-full rounded-[1.75rem] p-6 text-left shadow-soft lg:ml-5 lg:w-[calc(100%-1.25rem)]"
+                  aria-pressed="false"
+                  data-detail-en="Time and usage-based scheduling."
+                  data-detail-mn="Цаг хугацаа болон хэрэглээ дээр үндэслэн хуваарилдаг."
+                >
+                  <span class="flex items-start gap-5">
+                    <span class="maturity-number flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-fiix/30 bg-white font-heading text-sm font-extrabold text-fiix transition">2</span>
+                    <span>
+                      <span class="block font-heading text-xl font-bold text-navy" data-en="Preventive Maintenance" data-mn="Урьдчилан сэргийлэх">Preventive Maintenance</span>
+                      <span class="mt-2 block leading-7 text-slate-600" data-en="Time and usage-based scheduling." data-mn="Цаг хугацаа болон хэрэглээ дээр үндэслэн хуваарилдаг.">Time and usage-based scheduling.</span>
+                    </span>
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  class="maturity-card premium-card reveal w-full rounded-[1.75rem] p-6 text-left shadow-soft lg:ml-10 lg:w-[calc(100%-2.5rem)]"
+                  aria-pressed="false"
+                  data-detail-en="Driven by real-time IoT and sensors."
+                  data-detail-mn="Бодит цагийн нөхцөл, IoT болон сенсор дээр суурилсан."
+                >
+                  <span class="flex items-start gap-5">
+                    <span class="maturity-number flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-fiix/30 bg-white font-heading text-sm font-extrabold text-fiix transition">3</span>
+                    <span>
+                      <span class="block font-heading text-xl font-bold text-navy" data-en="Condition-Based" data-mn="Нөхцөлд суурилсан">Condition-Based</span>
+                      <span class="mt-2 block leading-7 text-slate-600" data-en="Driven by real-time IoT and sensors." data-mn="Бодит цагийн нөхцөл, IoT болон сенсор дээр суурилсан.">Driven by real-time IoT and sensors.</span>
+                    </span>
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  class="maturity-card premium-card reveal w-full rounded-[1.75rem] p-6 text-left shadow-soft lg:ml-16 lg:w-[calc(100%-4rem)]"
+                  aria-pressed="false"
+                  data-detail-en="Data-driven machine learning models."
+                  data-detail-mn="AI/ML болон дата анализ ашиглан эвдрэлийг таамагладаг."
+                >
+                  <span class="flex items-start gap-5">
+                    <span class="maturity-number flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-fiix/30 bg-white font-heading text-sm font-extrabold text-fiix transition">4</span>
+                    <span>
+                      <span class="block font-heading text-xl font-bold text-navy" data-en="Predictive Maintenance" data-mn="Урьдчилан таамаглах">Predictive Maintenance</span>
+                      <span class="mt-2 block leading-7 text-slate-600" data-en="Data-driven machine learning models." data-mn="AI/ML болон дата анализ ашиглан эвдрэлийг таамагладаг.">Data-driven machine learning models.</span>
+                    </span>
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  class="maturity-card premium-card reveal w-full rounded-[1.75rem] p-6 text-left shadow-soft lg:ml-20 lg:w-[calc(100%-5rem)]"
+                  aria-pressed="false"
+                  data-detail-en="Automated AI recommendations and optimization."
+                  data-detail-mn="Хиймэл оюун ухааны автомат зөвлөмж, оновчлол авдаг."
+                >
+                  <span class="flex items-start gap-5">
+                    <span class="maturity-number flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-fiix/30 bg-white font-heading text-sm font-extrabold text-fiix transition">5</span>
+                    <span>
+                      <span class="block font-heading text-xl font-bold text-navy" data-en="Prescriptive Maintenance" data-mn="Зөвлөмжит AI засвар">Prescriptive Maintenance</span>
+                      <span class="mt-2 block leading-7 text-slate-600" data-en="Automated AI recommendations and optimization." data-mn="Хиймэл оюун ухааны автомат зөвлөмж, оновчлол авдаг.">Automated AI recommendations and optimization.</span>
+                    </span>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="outcomes" class="scroll-mt-24 bg-white py-24 sm:py-32" aria-labelledby="outcomes-heading">
+          <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-3xl text-center reveal">
+              <p class="font-heading text-sm font-bold uppercase tracking-[0.22em] text-fiix" data-en="Outcomes" data-mn="Үр дүн">Outcomes</p>
+              <h2
+                id="outcomes-heading"
+                class="mt-4 font-heading text-3xl font-extrabold tracking-tight text-navy sm:text-5xl"
+                data-en="Expected outcomes from disciplined maintenance execution."
+                data-mn="Тогтолцоотой засвар үйлчилгээний хүлээгдэж буй үр дүн."
+              >Expected outcomes from disciplined maintenance execution.</h2>
+            </div>
+
+            <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+              <article class="premium-card reveal rounded-3xl p-7 text-center shadow-soft">
+                <i data-lucide="shield-check" class="mx-auto h-8 w-8 text-fiix" aria-hidden="true"></i>
+                <p class="metric-number mt-6 text-4xl font-extrabold tracking-tight text-navy">+15%</p>
+                <div class="mx-auto mt-4 h-px w-12 bg-fiix"></div>
+                <p class="mt-4 text-sm font-medium leading-6 text-slate-600" data-en="Asset Life Extension" data-mn="Хөрөнгө ашиглалтын хугацаа">Asset Life Extension</p>
+              </article>
+              <article class="premium-card reveal rounded-3xl p-7 text-center shadow-soft">
+                <i data-lucide="circle-dollar-sign" class="mx-auto h-8 w-8 text-fiix" aria-hidden="true"></i>
+                <p class="metric-number mt-6 text-4xl font-extrabold tracking-tight text-navy">-20%</p>
+                <div class="mx-auto mt-4 h-px w-12 bg-fiix"></div>
+                <p class="mt-4 text-sm font-medium leading-6 text-slate-600" data-en="Total Costs" data-mn="Нийт зардал">Total Costs</p>
+              </article>
+              <article class="premium-card reveal rounded-3xl p-7 text-center shadow-soft">
+                <i data-lucide="trending-up" class="mx-auto h-8 w-8 text-fiix" aria-hidden="true"></i>
+                <p class="metric-number mt-6 text-4xl font-extrabold tracking-tight text-navy">+20%</p>
+                <div class="mx-auto mt-4 h-px w-12 bg-fiix"></div>
+                <p class="mt-4 text-sm font-medium leading-6 text-slate-600" data-en="Work Efficiency" data-mn="Ажлын бүтээмж">Work Efficiency</p>
+              </article>
+              <article class="premium-card reveal rounded-3xl p-7 text-center shadow-soft">
+                <i data-lucide="clock-arrow-down" class="mx-auto h-8 w-8 text-fiix" aria-hidden="true"></i>
+                <p class="metric-number mt-6 text-4xl font-extrabold tracking-tight text-navy">-20%</p>
+                <div class="mx-auto mt-4 h-px w-12 bg-fiix"></div>
+                <p class="mt-4 text-sm font-medium leading-6 text-slate-600" data-en="Equipment Downtime" data-mn="Гэнэтийн сул зогсолт">Equipment Downtime</p>
+              </article>
+              <article class="premium-card reveal rounded-3xl p-7 text-center shadow-soft">
+                <i data-lucide="badge-check" class="mx-auto h-8 w-8 text-fiix" aria-hidden="true"></i>
+                <p class="metric-number mt-6 text-4xl font-extrabold tracking-tight text-navy">+25%</p>
+                <div class="mx-auto mt-4 h-px w-12 bg-fiix"></div>
+                <p class="mt-4 text-sm font-medium leading-6 text-slate-600" data-en="Maintenance Quality" data-mn="Засвар үйлчилгээний чанар">Maintenance Quality</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="services" class="scroll-mt-24 bg-white py-24 sm:py-32" aria-labelledby="services-heading">
+          <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-3xl text-center reveal">
+              <p class="font-heading text-sm font-bold uppercase tracking-[0.22em] text-fiix" data-en="Services" data-mn="Үйлчилгээ">Services</p>
+              <h2
+                id="services-heading"
+                class="mt-4 font-heading text-3xl font-extrabold tracking-tight text-navy sm:text-5xl"
+                data-en="Implementation services for enterprise reliability teams."
+                data-mn="Найдвартай ажиллагааны багт зориулсан нэвтрүүлэлтийн үйлчилгээ."
+              >Implementation services for enterprise reliability teams.</h2>
+            </div>
+
+            <div class="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <article class="premium-card reveal rounded-[1.75rem] p-7 shadow-soft">
+                <i data-lucide="rocket" class="h-7 w-7 text-fiix" aria-hidden="true"></i>
+                <h3 class="mt-6 font-heading text-lg font-bold text-navy" data-en="Full CMMS Implementation" data-mn="CMMS бүрэн нэвтрүүлэлт">Full CMMS Implementation</h3>
+                <p class="mt-4 leading-7 text-slate-600" data-en="End-to-end rollout planning, configuration, launch, and adoption support." data-mn="Төлөвлөлт, тохиргоо, ашиглалтад оруулах, хэрэглээг хэвшүүлэх цогц дэмжлэг.">End-to-end rollout planning, configuration, launch, and adoption support.</p>
+              </article>
+              <article class="premium-card reveal rounded-[1.75rem] p-7 shadow-soft">
+                <i data-lucide="graduation-cap" class="h-7 w-7 text-fiix" aria-hidden="true"></i>
+                <h3 class="mt-6 font-heading text-lg font-bold text-navy" data-en="User Training" data-mn="Хэрэглэгчийн сургалт">User Training</h3>
+                <p class="mt-4 leading-7 text-slate-600" data-en="Role-based training and long-term support for maintenance teams." data-mn="Үүрэгт суурилсан сургалт болон засвар үйлчилгээний багийн урт хугацааны дэмжлэг.">Role-based training and long-term support for maintenance teams.</p>
+              </article>
+              <article class="premium-card reveal rounded-[1.75rem] p-7 shadow-soft">
+                <i data-lucide="sliders-horizontal" class="h-7 w-7 text-fiix" aria-hidden="true"></i>
+                <h3 class="mt-6 font-heading text-lg font-bold text-navy" data-en="Tailored Configuration" data-mn="Тусгай тохиргоо">Tailored Configuration</h3>
+                <p class="mt-4 leading-7 text-slate-600" data-en="Workflows, permissions, assets, spares, dashboards, and reports tuned to your needs." data-mn="Ажлын урсгал, эрх, хөрөнгө, сэлбэг, самбар, тайланг байгууллагын хэрэгцээнд нийцүүлнэ.">Workflows, permissions, assets, spares, dashboards, and reports tuned to your needs.</p>
+              </article>
+              <article class="premium-card reveal rounded-[1.75rem] p-7 shadow-soft">
+                <i data-lucide="layout-dashboard" class="h-7 w-7 text-fiix" aria-hidden="true"></i>
+                <h3 class="mt-6 font-heading text-lg font-bold text-navy" data-en="Dashboard & Reports" data-mn="Самбар ба тайлан">Dashboard & Reports</h3>
+                <p class="mt-4 leading-7 text-slate-600" data-en="KPI dashboards and reporting that help leaders make data-driven decisions." data-mn="Удирдлагын шийдвэрийг дата дээр суурилуулах KPI самбар, тайлангийн тохиргоо.">KPI dashboards and reporting that help leaders make data-driven decisions.</p>
+              </article>
+              <article class="premium-card reveal rounded-[1.75rem] p-7 shadow-soft">
+                <i data-lucide="workflow" class="h-7 w-7 text-fiix" aria-hidden="true"></i>
+                <h3 class="mt-6 font-heading text-lg font-bold text-navy" data-en="API Integrations" data-mn="API интеграци">API Integrations</h3>
+                <p class="mt-4 leading-7 text-slate-600" data-en="Integration planning for connected enterprise workflows and data exchange." data-mn="Байгууллагын системүүдтэй холбох өгөгдөл солилцоо, ажлын урсгалын интеграцийн төлөвлөлт.">Integration planning for connected enterprise workflows and data exchange.</p>
+              </article>
+              <article class="premium-card reveal rounded-[1.75rem] p-7 shadow-soft">
+                <i data-lucide="settings-2" class="h-7 w-7 text-fiix" aria-hidden="true"></i>
+                <h3 class="mt-6 font-heading text-lg font-bold text-navy" data-en="Ongoing Optimization" data-mn="Тасралтгүй сайжруулалт">Ongoing Optimization</h3>
+                <p class="mt-4 leading-7 text-slate-600" data-en="Continuous improvement support after go-live to increase reliability maturity." data-mn="Ашиглалтад орсны дараа найдвартай ажиллагааны түвшнийг нэмэгдүүлэх дэмжлэг.">Continuous improvement support after go-live to increase reliability maturity.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="security" class="scroll-mt-24 bg-white py-24 sm:py-32" aria-labelledby="security-heading">
+          <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
+              <div class="reveal">
+                <p class="font-heading text-sm font-bold uppercase tracking-[0.22em] text-fiix" data-en="Trust" data-mn="Итгэлцэл">Trust</p>
+                <h2
+                  id="security-heading"
+                  class="mt-4 font-heading text-3xl font-extrabold tracking-tight text-navy sm:text-5xl"
+                  data-en="Enterprise-Grade Security & Trust"
+                  data-mn="Мэдээллийн аюулгүй байдлын баталгаа"
+                >Enterprise-Grade Security &amp; Trust</h2>
+              </div>
+
+              <div class="grid gap-6 md:grid-cols-2">
+                <article class="premium-card reveal rounded-[2rem] p-8 shadow-soft">
+                  <i data-lucide="file-check-2" class="h-8 w-8 text-fiix" aria-hidden="true"></i>
+                  <h3 class="mt-7 font-heading text-2xl font-bold text-navy">ISO 27001</h3>
+                  <p class="mt-4 leading-7 text-slate-600" data-en="Information Security Management System, risk assessment, and data integrity." data-mn="Мэдээллийн аюулгүй байдлын удирдлагын тогтолцоо болон өгөгдлийн бүрэн бүтэн байдал.">Information Security Management System, risk assessment, and data integrity.</p>
+                </article>
+                <article class="premium-card reveal rounded-[2rem] p-8 shadow-soft">
+                  <i data-lucide="lock-keyhole" class="h-8 w-8 text-fiix" aria-hidden="true"></i>
+                  <h3 class="mt-7 font-heading text-2xl font-bold text-navy">SOC 2 Type II</h3>
+                  <p class="mt-4 leading-7 text-slate-600" data-en="Certified security protocols, data encryption, and operational internal controls by Rockwell Automation." data-mn="Аюулгүй байдал, дата боловсруулалтын нууцлал болон дотоод хяналтын системийн баталгаа.">Certified security protocols, data encryption, and operational internal controls by Rockwell Automation.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="timeline" class="scroll-mt-24 bg-white py-24 sm:py-32" aria-labelledby="timeline-heading">
+          <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-3xl text-center reveal">
+              <p class="font-heading text-sm font-bold uppercase tracking-[0.22em] text-fiix" data-en="Timeline" data-mn="Нэвтрүүлэлт">Timeline</p>
+              <h2
+                id="timeline-heading"
+                class="mt-4 font-heading text-3xl font-extrabold tracking-tight text-navy sm:text-5xl"
+                data-en="A connected implementation path."
+                data-mn="Нэвтрүүлэлтийн уялдаа холбоотой төлөвлөгөө."
+              >A connected implementation path.</h2>
+            </div>
+
+            <ol class="relative mx-auto mt-16 grid max-w-6xl gap-8 before:absolute before:left-6 before:top-6 before:h-[calc(100%-3rem)] before:w-0.5 before:bg-gradient-to-b before:from-fiix before:via-fiix/70 before:to-fiix/20 lg:grid-cols-7 lg:gap-5 lg:before:left-0 lg:before:top-6 lg:before:h-0.5 lg:before:w-full">
+              <li class="premium-card reveal relative rounded-3xl bg-white p-6 pl-20 shadow-soft lg:p-5 lg:pt-16"><span class="absolute left-5 top-5 z-10 flex h-12 w-12 items-center justify-center rounded-full border-4 border-white bg-fiix font-heading text-sm font-extrabold text-white shadow-glow lg:top-0">1</span><h3 class="font-heading text-base font-bold leading-6 text-navy" data-en="Project Launch (1 wk)" data-mn="Төслийн нээлт (17)">Project Launch (1 wk)</h3></li>
+              <li class="premium-card reveal relative rounded-3xl bg-white p-6 pl-20 shadow-soft lg:p-5 lg:pt-16"><span class="absolute left-5 top-5 z-10 flex h-12 w-12 items-center justify-center rounded-full border-4 border-white bg-fiix font-heading text-sm font-extrabold text-white shadow-glow lg:top-0">2</span><h3 class="font-heading text-base font-bold leading-6 text-navy" data-en="Discovery (1-2 wks)" data-mn="Шинжилгээ (1-27)">Discovery (1-2 wks)</h3></li>
+              <li class="premium-card reveal relative rounded-3xl bg-white p-6 pl-20 shadow-soft lg:p-5 lg:pt-16"><span class="absolute left-5 top-5 z-10 flex h-12 w-12 items-center justify-center rounded-full border-4 border-white bg-fiix font-heading text-sm font-extrabold text-white shadow-glow lg:top-0">3</span><h3 class="font-heading text-base font-bold leading-6 text-navy" data-en="Configuration (2 wks)" data-mn="Тохоргоо (27)">Configuration (2 wks)</h3></li>
+              <li class="premium-card reveal relative rounded-3xl bg-white p-6 pl-20 shadow-soft lg:p-5 lg:pt-16"><span class="absolute left-5 top-5 z-10 flex h-12 w-12 items-center justify-center rounded-full border-4 border-white bg-fiix font-heading text-sm font-extrabold text-white shadow-glow lg:top-0">4</span><h3 class="font-heading text-base font-bold leading-6 text-navy" data-en="Data Prep (3-4 wks)" data-mn="Дата бэлтгэл (3-47)">Data Prep (3-4 wks)</h3></li>
+              <li class="premium-card reveal relative rounded-3xl bg-white p-6 pl-20 shadow-soft lg:p-5 lg:pt-16"><span class="absolute left-5 top-5 z-10 flex h-12 w-12 items-center justify-center rounded-full border-4 border-white bg-fiix font-heading text-sm font-extrabold text-white shadow-glow lg:top-0">5</span><h3 class="font-heading text-base font-bold leading-6 text-navy" data-en="Data Import (2 wks)" data-mn="Дата оруулах (27)">Data Import (2 wks)</h3></li>
+              <li class="premium-card reveal relative rounded-3xl bg-white p-6 pl-20 shadow-soft lg:p-5 lg:pt-16"><span class="absolute left-5 top-5 z-10 flex h-12 w-12 items-center justify-center rounded-full border-4 border-white bg-fiix font-heading text-sm font-extrabold text-white shadow-glow lg:top-0">6</span><h3 class="font-heading text-base font-bold leading-6 text-navy" data-en="Training (2 wks)" data-mn="Сургалт (27)">Training (2 wks)</h3></li>
+              <li class="premium-card reveal relative rounded-3xl bg-white p-6 pl-20 shadow-soft lg:p-5 lg:pt-16"><span class="absolute left-5 top-5 z-10 flex h-12 w-12 items-center justify-center rounded-full border-4 border-white bg-fiix font-heading text-sm font-extrabold text-white shadow-glow lg:top-0">7</span><h3 class="font-heading text-base font-bold leading-6 text-navy" data-en="Go-Live (2 wks)" data-mn="Ашиглаж эхлэх (27)">Go-Live (2 wks)</h3></li>
+            </ol>
+
+            <div class="premium-card reveal mx-auto mt-16 max-w-3xl rounded-3xl bg-white p-6 text-center shadow-soft">
+              <p
+                class="font-heading font-bold text-navy"
+                data-en="Total duration: 8-14 weeks depending on corporate scope."
+                data-mn="Нийт хугацаа тухайн байгууллагын цар хүрээнээс хамааран 8-14 долоо хоног байна."
+              >Total duration: 8-14 weeks depending on corporate scope.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="team" class="scroll-mt-24 bg-white py-24 sm:py-32" aria-labelledby="team-heading">
+          <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-3xl text-center reveal">
+              <p class="font-heading text-sm font-bold uppercase tracking-[0.22em] text-fiix" data-en="Team" data-mn="Баг">Team</p>
+              <h2
+                id="team-heading"
+                class="mt-4 font-heading text-3xl font-extrabold tracking-tight text-navy sm:text-5xl"
+                data-en="Senior delivery ownership from day one."
+                data-mn="Төслийн эхний өдрөөс удирдах түвшний оролцоотой."
+              >Senior delivery ownership from day one.</h2>
+            </div>
+
+            <div class="mt-16 grid gap-8 md:grid-cols-3">
+              <article class="premium-card reveal rounded-[2rem] p-8 text-center shadow-soft">
+                <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-white font-heading text-xl font-extrabold text-navy shadow-soft ring-1 ring-slate-200">KG</div>
+                <h3 class="mt-7 font-heading text-lg font-bold text-navy" data-en="Kh. Gantulga" data-mn="Х.Гантулга">Kh. Gantulga</h3>
+                <p class="mt-2 text-sm font-medium leading-6 text-slate-600" data-en="Founder & CEO" data-mn="Үүсгэн байгуулагч, Гүйцэтгэх захирал">Founder &amp; CEO</p>
+              </article>
+              <article class="premium-card reveal rounded-[2rem] p-8 text-center shadow-soft">
+                <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-white font-heading text-xl font-extrabold text-navy shadow-soft ring-1 ring-slate-200">JN</div>
+                <h3 class="mt-7 font-heading text-lg font-bold text-navy" data-en="J. Nomin-Erdene" data-mn="Ж.Номин-ЭРДЭНЭ">J. Nomin-Erdene</h3>
+                <p class="mt-2 text-sm font-medium leading-6 text-slate-600" data-en="Co-Founder & CTO" data-mn="Хамтран үүсгэн байгуулагч, Технологи хариуцсан захирал">Co-Founder &amp; CTO</p>
+              </article>
+              <article class="premium-card reveal rounded-[2rem] p-8 text-center shadow-soft">
+                <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-white font-heading text-xl font-extrabold text-navy shadow-soft ring-1 ring-slate-200">EU</div>
+                <h3 class="mt-7 font-heading text-lg font-bold text-navy" data-en="E. Uranbadral" data-mn="Э.УРАНБАДРАЛ">E. Uranbadral</h3>
+                <p class="mt-2 text-sm font-medium leading-6 text-slate-600" data-en="Co-Founder & BDO" data-mn="Хамтран үүсгэн байгуулагч, Бизнес хөгжил хариуцсан захирал">Co-Founder &amp; BDO</p>
+              </article>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer id="contact" class="scroll-mt-24 border-t border-slate-100 bg-white text-slate-700">
+        <div class="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+          <div class="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-start">
+            <div class="reveal">
+              <p class="font-heading text-sm font-bold uppercase tracking-[0.22em] text-fiix" data-en="Contact" data-mn="Холбоо барих">Contact</p>
+              <h2 class="mt-4 font-heading text-3xl font-extrabold tracking-tight text-navy">Core Step Solution LLC</h2>
+              <p
+                class="mt-5 max-w-xl leading-7 text-slate-600"
+                data-en="Digital maintenance and asset management solutions for manufacturing operations in Mongolia and the region."
+                data-mn="Монгол болон бүс нутгийн үйлдвэрлэлийн байгууллагуудад зориулсан дижитал засвар үйлчилгээ, хөрөнгийн удирдлагын шийдэл."
+              >Digital maintenance and asset management solutions for manufacturing operations in Mongolia and the region.</p>
+            </div>
+
+            <address class="reveal not-italic text-slate-600">
+              <dl class="space-y-5">
+                <div class="flex gap-4">
+                  <dt class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-fiix/10 text-fiix"><span class="sr-only">Phone</span><i data-lucide="phone" class="h-5 w-5" aria-hidden="true"></i></dt>
+                  <dd><span class="font-heading text-sm font-bold text-navy" data-en="Phone" data-mn="Утас">Phone</span><br />+976-99038224</dd>
+                </div>
+                <div class="flex gap-4">
+                  <dt class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-fiix/10 text-fiix"><span class="sr-only">Email</span><i data-lucide="mail" class="h-5 w-5" aria-hidden="true"></i></dt>
+                  <dd><span class="font-heading text-sm font-bold text-navy" data-en="Email" data-mn="Имэйл">Email</span><br /><a class="transition hover:text-fiix" href="mailto:gantulga.kh@corestepllc.com">gantulga.kh@corestepllc.com</a></dd>
+                </div>
+                <div class="flex gap-4">
+                  <dt class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-fiix/10 text-fiix"><span class="sr-only">Location</span><i data-lucide="map-pin" class="h-5 w-5" aria-hidden="true"></i></dt>
+                  <dd><span class="font-heading text-sm font-bold text-navy" data-en="Location" data-mn="Хаяг">Location</span><br /><span data-en="Mongolia, Ulaanbaatar, Bayangol District, 19th Khoroo." data-mn="Монгол улс, Улаанбаатар хот, Баянгол дүүрэг, 19-р хороо.">Mongolia, Ulaanbaatar, Bayangol District, 19th Khoroo.</span></dd>
+                </div>
+              </dl>
+            </address>
+          </div>
+
+          <div
+            class="mt-16 border-t border-slate-100 pt-8 text-sm text-slate-500"
+            data-en="© 2025 Core Step Solution LLC. All rights reserved."
+            data-mn="© 2025 Core Step Solution LLC. Бүх эрх хуулиар хамгаалагдсан."
+          >© 2025 Core Step Solution LLC. All rights reserved.</div>
+        </div>
+      </footer>
+    </div>
+
+
+    <div
+      id="demo-modal"
+      class="pointer-events-none fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/40 px-4 py-8 opacity-0 backdrop-blur-sm transition duration-300"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="demo-modal-title"
+      aria-describedby="demo-modal-subtitle"
+    >
+      <div
+        id="demo-modal-panel"
+        class="max-h-[92vh] w-full max-w-2xl scale-95 overflow-y-auto rounded-[2rem] border border-white/70 bg-white p-6 opacity-0 shadow-2xl transition duration-300 sm:p-8"
+      >
+        <div class="flex items-start justify-between gap-6">
+          <div>
+            <p class="font-heading text-sm font-bold uppercase tracking-[0.22em] text-fiix" data-en="Contact Form" data-mn="Холбоо барих маягт">Contact Form</p>
+            <h2 id="demo-modal-title" class="mt-3 font-heading text-2xl font-extrabold tracking-tight text-navy sm:text-3xl" data-en="Book a Free Demo" data-mn="Демо уулзалт товлох">Book a Free Demo</h2>
+            <p id="demo-modal-subtitle" class="mt-3 leading-7 text-slate-600" data-en="Leave your details and our team will reach out to you within 24 hours." data-mn="Та мэдээллээ үлдээгээрэй. Манай баг 24 цагийн дотор эргэж холбогдох болно.">Leave your details and our team will reach out to you within 24 hours.</p>
+          </div>
+          <button id="modal-close" type="button" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition hover:border-fiix hover:text-fiix focus:outline-none focus:ring-2 focus:ring-fiix focus:ring-offset-2" aria-label="Close modal">
+            <i data-lucide="x" class="h-5 w-5" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <form id="lead-form" action="https://formspree.io/f/xdajjald" method="POST" class="mt-8 grid gap-5">
+          <div class="grid gap-5 sm:grid-cols-2">
+            <label class="block">
+              <span class="mb-2 block font-heading text-sm font-bold text-navy" data-en="Full Name" data-mn="Бүтэн нэр">Full Name</span>
+              <input required name="name" type="text" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-fiix focus:ring-4 focus:ring-fiix/10" data-placeholder-en="Full Name" data-placeholder-mn="Бүтэн нэр" placeholder="Full Name" />
+            </label>
+            <label class="block">
+              <span class="mb-2 block font-heading text-sm font-bold text-navy" data-en="Company Name" data-mn="Компанийн нэр">Company Name</span>
+              <input required name="company" type="text" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-fiix focus:ring-4 focus:ring-fiix/10" data-placeholder-en="Company Name" data-placeholder-mn="Компанийн нэр" placeholder="Company Name" />
+            </label>
+          </div>
+
+          <div class="grid gap-5 sm:grid-cols-2">
+            <label class="block">
+              <span class="mb-2 block font-heading text-sm font-bold text-navy" data-en="Phone Number" data-mn="Утасны дугаар">Phone Number</span>
+              <input required name="phone" type="tel" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-fiix focus:ring-4 focus:ring-fiix/10" data-placeholder-en="Phone Number" data-placeholder-mn="Утасны дугаар" placeholder="Phone Number" />
+            </label>
+            <label class="block">
+              <span class="mb-2 block font-heading text-sm font-bold text-navy" data-en="Email Address" data-mn="Имэйл хаяг">Email Address</span>
+              <input required name="email" type="email" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-fiix focus:ring-4 focus:ring-fiix/10" data-placeholder-en="Email Address" data-placeholder-mn="Имэйл хаяг" placeholder="Email Address" />
+            </label>
+          </div>
+
+          <label class="block">
+            <span class="mb-2 block font-heading text-sm font-bold text-navy" data-en="Message" data-mn="Нэмэлт хүсэлт (Үйл ажиллагааны чиглэл г.м)">Message</span>
+            <textarea name="message" rows="4" class="w-full resize-none rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-fiix focus:ring-4 focus:ring-fiix/10" data-placeholder-en="Message" data-placeholder-mn="Нэмэлт хүсэлт (Үйл ажиллагааны чиглэл г.м)" placeholder="Message"></textarea>
+          </label>
+
+          <button id="lead-submit" type="submit" class="mt-2 rounded-full border border-navy bg-navy px-6 py-4 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-fiix hover:bg-fiix hover:shadow-glow focus:outline-none focus:ring-2 focus:ring-fiix focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-70" data-en="Send Request" data-mn="Хүсэлт илгээх">Send Request</button>
+          <p id="form-error" class="hidden rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700" data-en="Something went wrong. Please try again." data-mn="Алдаа гарлаа. Та дахин оролдоно уу.">Something went wrong. Please try again.</p>
+        </form>
+
+        <div id="modal-success" class="hidden py-12 text-center">
+          <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-fiix/10 text-fiix">
+            <i data-lucide="circle-check" class="h-8 w-8" aria-hidden="true"></i>
+          </div>
+          <p class="mx-auto mt-6 max-w-md font-heading text-xl font-bold text-navy" data-en="Thank you! Your request has been sent successfully." data-mn="Баярлалаа! Таны хүсэлтийг амжилттай хүлээн авлаа.">Thank you! Your request has been sent successfully.</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+
+      const translations = {
+        en: {
+          toggleLabel: 'MN',
+          nav: ['About', 'Maturity', 'Outcomes', 'Services', 'Timeline', 'Team', 'Contact Us'],
+          hero: {
+            badge: 'Fiix CMMS Certified Partner',
+            title: 'Core Step Solution LLC - Digital Maintenance & Asset Management',
+            subtitle: 'We deliver digital maintenance and asset management solutions for all manufacturing sectors from SMEs to large industries to improve asset reliability, reduce downtime, and enable data-driven decisions.',
+            cta: 'Book a Demo',
+          },
+          maturity: [
+            ['Reactive Maintenance', 'Fix when it breaks. Hint: 90% of local enterprises operate here.'],
+            ['Preventive Maintenance', 'Time and usage-based scheduling.'],
+            ['Condition-Based', 'Driven by real-time IoT and sensors.'],
+            ['Predictive Maintenance', 'Data-driven machine learning models.'],
+            ['Prescriptive Maintenance', 'Automated AI recommendations and optimization.'],
+          ],
+          about: {
+            problem: 'Rising maintenance costs, unexpected downtime, lack of real-time visibility, paper-based workflows.',
+            solution: 'Centralized asset tracking, automated work orders, optimized inventory, and predictive real-time dashboard analytics.',
+          },
+          outcomes: ['+15% Asset Life Extension', '-20% Total Costs', '+20% Work Efficiency', '-20% Equipment Downtime', '+25% Maintenance Quality'],
+          security: {
+            iso27001: 'Information Security Management System, risk assessment, and data integrity.',
+            soc2: 'Certified security protocols, data encryption, and operational internal controls by Rockwell Automation.',
+          },
+          timeline: ['Project Launch (1 wk)', 'Discovery (1-2 wks)', 'Configuration (2 wks)', 'Data Prep (3-4 wks)', 'Data Import (2 wks)', 'Training (2 wks)', 'Go-Live (2 wks)'],
+          team: ['Kh. Gantulga - Founder & CEO', 'J. Nomin-Erdene - Co-Founder & CTO', 'E. Uranbadral - Co-Founder & BDO'],
+          footer: '© 2025 Core Step Solution LLC. All rights reserved.',
+          modal: {
+            title: 'Book a Free Demo',
+            subtitle: 'Leave your details and our team will reach out to you within 24 hours.',
+            fullName: 'Full Name',
+            companyName: 'Company Name',
+            phone: 'Phone Number',
+            email: 'Email Address',
+            message: 'Message',
+            submit: 'Send Request',
+            success: 'Thank you! Your request has been sent successfully.',
+            sending: 'Sending...',
+            error: 'Something went wrong. Please try again.',
+          },
+        },
+        mn: {
+          toggleLabel: 'EN',
+          nav: ['Бидний тухай', 'Хөгжлийн шат', 'Үр дүн', 'Үйлчилгээ', 'Нэвтрүүлэлт', 'Баг', 'Холбоо барих'],
+          hero: {
+            badge: 'Fiix CMMS нэвтрүүлэгч түнш',
+            title: 'Core Step Solution LLC - Дижитал засвар үйлчилгээ, хөрөнгийн удирдлага',
+            subtitle: 'Бүхий л төрлийн үйлдвэрлэлийн байгууллагуудын засвар үйлчилгээтэй холбоотой ажлыг төлөвлөх, удирдах, хянах дижитал шийдэл юм.',
+            cta: 'Демо уулзалт товлох',
+          },
+          maturity: [
+            ['Гэнэтийн засвар', 'Эвдрэл гарах үед засна. Hint: Монголын байгууллагуудын 90% нь энэ шатанд байдаг.'],
+            ['Урьдчилан сэргийлэх', 'Цаг хугацаа болон хэрэглээ дээр үндэслэн хуваарилдаг.'],
+            ['Нөхцөлд суурилсан', 'Бодит цагийн нөхцөл, IoT болон сенсор дээр суурилсан.'],
+            ['Урьдчилан таамаглах', 'AI/ML болон дата анализ ашиглан эвдрэлийг таамагладаг.'],
+            ['Зөвлөмжит AI засвар', 'Хиймэл оюун ухааны автомат зөвлөмж, оновчлол авдаг.'],
+          ],
+          about: {
+            problem: 'Засварын зардал өсөх, гэнэтийн сул зогсолт, тайлан хяналтын дутагдал, цаасан суурьтай үйл ажиллагаа.',
+            solution: 'Ажлын захиалгын удирдлага, хөрөнгийн нэгдсэн хяналт, агуулахын оновчтой төлөвлөлт, бодит датанд суурилсан дүн шинжилгээ.',
+          },
+          outcomes: ['+15% Хөрөнгө ашиглалтын хугацаа', '-20% Нийт зардал', '+20% Ажлын бүтээмж', '-20% Гэнэтийн сул зогсолт', '+25% Засвар үйлчилгээний чанар'],
+          security: {
+            iso27001: 'Мэдээллийн аюулгүй байдлын удирдлагын тогтолцоо болон өгөгдлийн бүрэн бүтэн байдал.',
+            soc2: 'Аюулгүй байдал, дата боловсруулалтын нууцлал болон дотоод хяналтын системийн баталгаа.',
+          },
+          timeline: ['Төслийн нээлт (17)', 'Шинжилгээ (1-27)', 'Тохоргоо (27)', 'Дата бэлтгэл (3-47)', 'Дата оруулах (27)', 'Сургалт (27)', 'Ашиглаж эхлэх (27)'],
+          team: ['Х.Гантулга - Үүсгэн байгуулагч, Гүйцэтгэх захирал', 'Ж.Номин-ЭРДЭНЭ - Хамтран үүсгэн байгуулагч, Технологи хариуцсан захирал', 'Э.УРАНБАДРАЛ - Хамтран үүсгэн байгуулагч, Бизнес хөгжил хариуцсан захирал'],
+          footer: '© 2025 Core Step Solution LLC. Бүх эрх хуулиар хамгаалагдсан.',
+          modal: {
+            title: 'Демо уулзалт товлох',
+            subtitle: 'Та мэдээллээ үлдээгээрэй. Манай баг 24 цагийн дотор эргэж холбогдох болно.',
+            fullName: 'Бүтэн нэр',
+            companyName: 'Компанийн нэр',
+            phone: 'Утасны дугаар',
+            email: 'Имэйл хаяг',
+            message: 'Нэмэлт хүсэлт (Үйл ажиллагааны чиглэл г.м)',
+            submit: 'Хүсэлт илгээх',
+            success: 'Баярлалаа! Таны хүсэлтийг амжилттай хүлээн авлаа.',
+            sending: 'Илгээж байна...',
+            error: 'Алдаа гарлаа. Та дахин оролдоно уу.',
+          },
+        },
+      };
+
+      const state = {
+        language: 'en',
+      };
+
+      const languageScope = document.querySelector('#language-scope');
+      const languageToggle = document.querySelector('#language-toggle');
+      const languageLabel = document.querySelector('#language-label');
+      const translatableElements = document.querySelectorAll('[data-en][data-mn]');
+      const maturityCards = document.querySelectorAll('.maturity-card');
+      const maturityDetail = document.querySelector('#maturity-detail');
+      const modal = document.querySelector('#demo-modal');
+      const modalPanel = document.querySelector('#demo-modal-panel');
+      const modalClose = document.querySelector('#modal-close');
+      const leadForm = document.querySelector('#lead-form');
+      const leadSubmit = document.querySelector('#lead-submit');
+      const formError = document.querySelector('#form-error');
+      const modalSuccess = document.querySelector('#modal-success');
+      const modalTriggers = document.querySelectorAll('.js-open-modal');
+      const placeholderElements = document.querySelectorAll('[data-placeholder-en][data-placeholder-mn]');
+      let successCloseTimer;
+
+      function refreshIcons() {
+        if (window.lucide) {
+          window.lucide.createIcons({ attrs: { 'stroke-width': 1.8 } });
+        }
+      }
+
+      function translatePage(language) {
+        state.language = language;
+        document.documentElement.lang = language === 'mn' ? 'mn' : 'en';
+        translatableElements.forEach((element) => {
+          element.textContent = element.dataset[language];
+        });
+        placeholderElements.forEach((element) => {
+          element.placeholder = element.dataset[`placeholder${language === 'mn' ? 'Mn' : 'En'}`];
+        });
+        if (leadSubmit && !leadSubmit.disabled) {
+          leadSubmit.textContent = translations[language].modal.submit;
+        }
+        if (formError) {
+          formError.textContent = translations[language].modal.error;
+        }
+        languageLabel.textContent = translations[language].toggleLabel;
+        updateMaturityDetail(document.querySelector('.maturity-card[aria-pressed="true"]') || maturityCards[0]);
+        refreshIcons();
+      }
+
+      function updateMaturityDetail(activeCard) {
+        if (!activeCard || !maturityDetail) return;
+        maturityCards.forEach((card) => {
+          card.setAttribute('aria-pressed', String(card === activeCard));
+          const marker = card.querySelector('.maturity-number');
+          marker.classList.toggle('bg-fiix', card === activeCard);
+          marker.classList.toggle('text-white', card === activeCard);
+          marker.classList.toggle('bg-white', card !== activeCard);
+          marker.classList.toggle('text-fiix', card !== activeCard);
+        });
+        maturityDetail.textContent = activeCard.dataset[`detail${state.language === 'mn' ? 'Mn' : 'En'}`];
+      }
+
+      maturityCards.forEach((card) => {
+        card.addEventListener('mouseenter', () => updateMaturityDetail(card));
+        card.addEventListener('focus', () => updateMaturityDetail(card));
+        card.addEventListener('click', () => updateMaturityDetail(card));
+      });
+
+      languageToggle.addEventListener('click', () => {
+        const nextLanguage = state.language === 'en' ? 'mn' : 'en';
+        languageScope.classList.add('is-changing');
+        window.setTimeout(() => {
+          translatePage(nextLanguage);
+          languageScope.classList.remove('is-changing');
+        }, 160);
+      });
+
+
+      function openModal() {
+        clearTimeout(successCloseTimer);
+        leadForm.classList.remove('hidden');
+        modalSuccess.classList.add('hidden');
+        formError.classList.add('hidden');
+        leadSubmit.disabled = false;
+        leadSubmit.textContent = translations[state.language].modal.submit;
+        modal.classList.remove('pointer-events-none', 'opacity-0');
+        modal.classList.add('opacity-100');
+        modalPanel.classList.remove('scale-95', 'opacity-0');
+        modalPanel.classList.add('scale-100', 'opacity-100');
+        document.body.classList.add('overflow-hidden');
+        window.setTimeout(() => modal.querySelector('input')?.focus(), 120);
+      }
+
+      function closeModal() {
+        clearTimeout(successCloseTimer);
+        modal.classList.add('pointer-events-none', 'opacity-0');
+        modal.classList.remove('opacity-100');
+        modalPanel.classList.add('scale-95', 'opacity-0');
+        modalPanel.classList.remove('scale-100', 'opacity-100');
+        document.body.classList.remove('overflow-hidden');
+        leadForm.reset();
+        leadForm.classList.remove('hidden');
+        modalSuccess.classList.add('hidden');
+        formError.classList.add('hidden');
+        leadSubmit.disabled = false;
+        leadSubmit.textContent = translations[state.language].modal.submit;
+      }
+
+      modalTriggers.forEach((trigger) => {
+        trigger.addEventListener('click', (event) => {
+          event.preventDefault();
+          openModal();
+        });
+      });
+
+      modalClose.addEventListener('click', closeModal);
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) closeModal();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !modal.classList.contains('pointer-events-none')) closeModal();
+      });
+
+      leadForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        formError.classList.add('hidden');
+        leadSubmit.disabled = true;
+        leadSubmit.textContent = translations[state.language].modal.sending;
+
+        const formData = new FormData(leadForm);
+        const payload = Object.fromEntries(formData.entries());
+
+        try {
+          const response = await fetch(leadForm.action, {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+          });
+
+          if (!response.ok) {
+            throw new Error('Formspree submission failed');
+          }
+
+          leadForm.reset();
+          leadForm.classList.add('hidden');
+          modalSuccess.classList.remove('hidden');
+          refreshIcons();
+          successCloseTimer = window.setTimeout(closeModal, 3000);
+        } catch (error) {
+          formError.textContent = translations[state.language].modal.error;
+          formError.classList.remove('hidden');
+          leadSubmit.disabled = false;
+          leadSubmit.textContent = translations[state.language].modal.submit;
+        }
+      });
+
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
+
+      const navLinks = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
+      const observedSections = navLinks.map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            navLinks.forEach((link) => {
+              link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+            });
+          });
+        },
+        { rootMargin: '-35% 0px -55% 0px', threshold: 0 }
+      );
+
+      observedSections.forEach((section) => sectionObserver.observe(section));
+      window.addEventListener('load', refreshIcons);
+      translatePage('en');
+    </script>
+  </body>
+</html>
